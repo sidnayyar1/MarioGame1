@@ -264,19 +264,21 @@ class GameScene: SKScene {
     cameraNode.addChild(livesLabel)
     
     CoinLabel.text = "Coins: X"
+    CoinLabel.fontColor = SKColor.black
                    CoinLabel.fontSize = 100
                   CoinLabel.zPosition = 150
-                   CoinLabel.position = CGPoint(
-                                x:  CGFloat(320),
-                                 y: playableRect.size.height - CGFloat(20))
-                          self.addChild(CoinLabel)
+    CoinLabel.horizontalAlignmentMode = .right
+    CoinLabel.verticalAlignmentMode = .top
+    CoinLabel.position = CGPoint(x: -playableRect.size.width/2 + CGFloat(20),
+                                 y: -playableRect.size.width/2 + CGFloat(20))
+                          cameraNode.addChild(CoinLabel)
     
     
     run(SKAction.repeatForever(
     SKAction.sequence([SKAction.run() { [weak self] in
                         self?.spawnCoin()
                       },
-                      SKAction.wait(forDuration: 1.0)])))
+                       SKAction.wait(forDuration: 0.5)])))
     
   }
     
@@ -399,6 +401,7 @@ class GameScene: SKScene {
       move(sprite: mario, velocity: velocity)
     moveCamera()
     livesLabel.text = "Lives: \(lives)"
+    CoinLabel.text = "Coins: \(coin)"
     checkCollisions()
     
     if lives <= 0 && !gameOver {

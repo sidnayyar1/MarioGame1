@@ -1,11 +1,3 @@
-//
-//  AppDelegate.swift
-//  MarioGame1
-//
-//  Created by Sidharth Nayyar on 6/15/20.
-//  Copyright © 2020 Sidharth Nayyar. All rights reserved.
-//
-
 import UIKit
 
 @UIApplicationMain

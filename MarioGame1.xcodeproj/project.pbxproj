@@ -15,6 +15,11 @@
 		010E32EA249828E400A72141 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 010E32E8249828E400A72141 /* Main.storyboard */; };
 		010E32EC249828E600A72141 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 010E32EB249828E600A72141 /* Assets.xcassets */; };
 		010E32EF249828E600A72141 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 010E32ED249828E600A72141 /* LaunchScreen.storyboard */; };
+		010E32FB24982C1D00A72141 /* Mario-coin-sound.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 010E32F724982C1D00A72141 /* Mario-coin-sound.mp3 */; };
+		010E32FC24982C1D00A72141 /* jumpSound.wav in Resources */ = {isa = PBXBuildFile; fileRef = 010E32F824982C1D00A72141 /* jumpSound.wav */; };
+		010E32FD24982C1D00A72141 /* loselifeSound.wav in Resources */ = {isa = PBXBuildFile; fileRef = 010E32F924982C1D00A72141 /* loselifeSound.wav */; };
+		010E32FE24982C1D00A72141 /* BgSound.wav in Resources */ = {isa = PBXBuildFile; fileRef = 010E32FA24982C1D00A72141 /* BgSound.wav */; };
+		010E331E24982E1E00A72141 /* MyUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 010E331D24982E1E00A72141 /* MyUtils.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +33,11 @@
 		010E32EB249828E600A72141 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		010E32EE249828E600A72141 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		010E32F0249828E600A72141 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		010E32F724982C1D00A72141 /* Mario-coin-sound.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Mario-coin-sound.mp3"; sourceTree = "<group>"; };
+		010E32F824982C1D00A72141 /* jumpSound.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = jumpSound.wav; sourceTree = "<group>"; };
+		010E32F924982C1D00A72141 /* loselifeSound.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = loselifeSound.wav; sourceTree = "<group>"; };
+		010E32FA24982C1D00A72141 /* BgSound.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = BgSound.wav; sourceTree = "<group>"; };
+		010E331D24982E1E00A72141 /* MyUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyUtils.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,6 +70,7 @@
 		010E32DD249828E400A72141 /* MarioGame1 */ = {
 			isa = PBXGroup;
 			children = (
+				010E32F624982C1D00A72141 /* Sounds */,
 				010E32DE249828E400A72141 /* AppDelegate.swift */,
 				010E32E0249828E400A72141 /* GameScene.sks */,
 				010E32E2249828E400A72141 /* Actions.sks */,
@@ -69,8 +80,20 @@
 				010E32EB249828E600A72141 /* Assets.xcassets */,
 				010E32ED249828E600A72141 /* LaunchScreen.storyboard */,
 				010E32F0249828E600A72141 /* Info.plist */,
+				010E331D24982E1E00A72141 /* MyUtils.swift */,
 			);
 			path = MarioGame1;
+			sourceTree = "<group>";
+		};
+		010E32F624982C1D00A72141 /* Sounds */ = {
+			isa = PBXGroup;
+			children = (
+				010E32F724982C1D00A72141 /* Mario-coin-sound.mp3 */,
+				010E32F824982C1D00A72141 /* jumpSound.wav */,
+				010E32F924982C1D00A72141 /* loselifeSound.wav */,
+				010E32FA24982C1D00A72141 /* BgSound.wav */,
+			);
+			path = Sounds;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -131,10 +154,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				010E32FC24982C1D00A72141 /* jumpSound.wav in Resources */,
+				010E32FD24982C1D00A72141 /* loselifeSound.wav in Resources */,
 				010E32EA249828E400A72141 /* Main.storyboard in Resources */,
 				010E32E1249828E400A72141 /* GameScene.sks in Resources */,
 				010E32EC249828E600A72141 /* Assets.xcassets in Resources */,
 				010E32EF249828E600A72141 /* LaunchScreen.storyboard in Resources */,
+				010E32FB24982C1D00A72141 /* Mario-coin-sound.mp3 in Resources */,
+				010E32FE24982C1D00A72141 /* BgSound.wav in Resources */,
 				010E32E3249828E400A72141 /* Actions.sks in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -149,6 +176,7 @@
 				010E32E5249828E400A72141 /* GameScene.swift in Sources */,
 				010E32E7249828E400A72141 /* GameViewController.swift in Sources */,
 				010E32DF249828E400A72141 /* AppDelegate.swift in Sources */,
+				010E331E24982E1E00A72141 /* MyUtils.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

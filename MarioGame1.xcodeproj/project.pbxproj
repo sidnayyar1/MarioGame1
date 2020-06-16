@@ -20,6 +20,7 @@
 		010E32FD24982C1D00A72141 /* loselifeSound.wav in Resources */ = {isa = PBXBuildFile; fileRef = 010E32F924982C1D00A72141 /* loselifeSound.wav */; };
 		010E32FE24982C1D00A72141 /* BgSound.wav in Resources */ = {isa = PBXBuildFile; fileRef = 010E32FA24982C1D00A72141 /* BgSound.wav */; };
 		010E331E24982E1E00A72141 /* MyUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 010E331D24982E1E00A72141 /* MyUtils.swift */; };
+		010E33202499171A00A72141 /* GameOverScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 010E331F2499171A00A72141 /* GameOverScene.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +39,7 @@
 		010E32F924982C1D00A72141 /* loselifeSound.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = loselifeSound.wav; sourceTree = "<group>"; };
 		010E32FA24982C1D00A72141 /* BgSound.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = BgSound.wav; sourceTree = "<group>"; };
 		010E331D24982E1E00A72141 /* MyUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyUtils.swift; sourceTree = "<group>"; };
+		010E331F2499171A00A72141 /* GameOverScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameOverScene.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,6 +83,7 @@
 				010E32ED249828E600A72141 /* LaunchScreen.storyboard */,
 				010E32F0249828E600A72141 /* Info.plist */,
 				010E331D24982E1E00A72141 /* MyUtils.swift */,
+				010E331F2499171A00A72141 /* GameOverScene.swift */,
 			);
 			path = MarioGame1;
 			sourceTree = "<group>";
@@ -173,6 +176,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				010E33202499171A00A72141 /* GameOverScene.swift in Sources */,
 				010E32E5249828E400A72141 /* GameScene.swift in Sources */,
 				010E32E7249828E400A72141 /* GameViewController.swift in Sources */,
 				010E32DF249828E400A72141 /* AppDelegate.swift in Sources */,

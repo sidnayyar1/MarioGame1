@@ -410,9 +410,26 @@ class GameScene: SKScene {
         print("Your Final Score is " + String(finalScore))
       backgroundMusicPlayer.stop()
         
+        let gameOver = GameOverScene(size: size, won: false)
+       // let gameOverScene = Gam(size: size, won: false)
+        //gameOverScene.scaleMode = scaleMode
+        gameOver.scaleMode = scaleMode
+        // 2
+        let reveal = SKTransition.flipHorizontal(withDuration: 0.5)
+        // 3
+        view?.presentScene(gameOver, transition: reveal)
       
+    } else if finalScore>=3 {
+            
+    let gameOver = GameOverScene(size: size, won: true)
+          // let gameOverScene = Gam(size: size, won: false)
+           //gameOverScene.scaleMode = scaleMode
+           gameOver.scaleMode = scaleMode
+           // 2
+           let reveal = SKTransition.flipHorizontal(withDuration: 0.5)
+           // 3
+           view?.presentScene(gameOver, transition: reveal)
     }
-    
     
   }
    

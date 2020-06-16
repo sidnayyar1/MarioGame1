@@ -24,7 +24,10 @@ class GameScene: SKScene {
   let enemyCollisionSound: SKAction = SKAction.playSoundFileNamed(
     "loselifeSound.wav", waitForCompletion: false)
   var invincible = false
-  let catMovePointsPerSec:CGFloat = 480.0
+    //declare coin
+    var coin = 0
+    
+    var finalScore = 0
 
   var lives = 7
   var gameOver = false
@@ -32,6 +35,7 @@ class GameScene: SKScene {
   let cameraMovePointsPerSec: CGFloat = 200.0
 
   let livesLabel = SKLabelNode(fontNamed: "Chalkduster")
+     let CoinLabel = SKLabelNode(fontNamed: "Chalkduster")
     
   override init(size: CGSize) {
     let maxAspectRatio:CGFloat = 16.0/9.0
@@ -48,8 +52,16 @@ class GameScene: SKScene {
       textures.append(SKTexture(imageNamed: "mario\(i)"))
     }
     // 3
+    textures.append(textures[11])
+    textures.append(textures[10])
+    textures.append(textures[9])
+    textures.append(textures[8])
+    textures.append(textures[7])
+    textures.append(textures[6])
+    textures.append(textures[5])
+    textures.append(textures[4])
+    textures.append(textures[3])
     textures.append(textures[2])
-    textures.append(textures[1])
 
     // 4
     marioAnimation = SKAction.animate(with: textures,
@@ -178,6 +190,35 @@ class GameScene: SKScene {
     
     
     
+    
+    func spawnCoin() {
+      // 1
+      let coin = SKSpriteNode(imageNamed: "coin")
+      coin.position = CGPoint(
+        x: CGFloat.random(min: playableRect.minX,
+                          max: playableRect.maxX),
+        y: CGFloat.random(min: playableRect.minY,
+                          max: playableRect.maxY))
+        coin.name = "coin"
+      //coin.setScale(0)
+      addChild(coin)
+      // 2
+//      let appear = SKAction.scale(to: 1.0, duration: 0.5)
+//      let wait = SKAction.wait(forDuration: 5.0)
+//      let disappear = SKAction.scale(to: 0, duration: 0.5)
+//      let removeFromParent = SKAction.removeFromParent()
+//      let actions = [appear, wait, disappear, removeFromParent]
+//      cat.run(SKAction.sequence(actions))
+        let actionMove =
+               SKAction.moveBy(x: -(size.width + coin.size.width), y: 0, duration: 1.5)
+             let actionRemove = SKAction.removeFromParent()
+             coin.run(SKAction.sequence([actionMove, actionRemove]))
+    }
+    
+    
+    
+    
+    
     //This override function helps in running the application
   override func didMove(to view: SKView) {
 
@@ -222,7 +263,25 @@ class GameScene: SKScene {
         y: -playableRect.size.height/2 + CGFloat(20))
     cameraNode.addChild(livesLabel)
     
+    CoinLabel.text = "Coins: X"
+                   CoinLabel.fontSize = 100
+                  CoinLabel.zPosition = 150
+                   CoinLabel.position = CGPoint(
+                                x:  CGFloat(320),
+                                 y: playableRect.size.height - CGFloat(20))
+                          self.addChild(CoinLabel)
+    
+    
+    run(SKAction.repeatForever(
+    SKAction.sequence([SKAction.run() { [weak self] in
+                        self?.spawnCoin()
+                      },
+                      SKAction.wait(forDuration: 1.0)])))
+    
   }
+    
+    
+    
     
     //this function is mario when it gets hit by enemy
   func marioHit(enemy: SKSpriteNode) {
@@ -244,28 +303,54 @@ class GameScene: SKScene {
   run(enemyCollisionSound)
   
   lives -= 1
+    
   }
     
-    //this function check the collision between mario and enemy
+    
+    
     
     func checkCollisions() {
-
-      if invincible {
-        return
-      }
-     
-      var hitEnemies: [SKSpriteNode] = []
-      enumerateChildNodes(withName: "Enemy") { node, _ in
-        let enemy = node as! SKSpriteNode
-        if node.frame.insetBy(dx: 20, dy: 20).intersects(
-          self.mario.frame) {
-          hitEnemies.append(enemy)
+        var hitCoins: [SKSpriteNode] = []
+        enumerateChildNodes(withName: "coin") { node, _ in
+          let coin = node as! SKSpriteNode
+          if coin.frame.intersects(self.mario.frame) {
+            hitCoins.append(coin)
+          }
+        }
+        for cat in hitCoins {
+          coinHit(enemy: cat)
+        }
+        var hitEnemies: [SKSpriteNode] = []
+        enumerateChildNodes(withName: "Enemy") { node, _ in
+          let enemy = node as! SKSpriteNode
+          if node.frame.insetBy(dx: 20, dy: 20).intersects(
+            self.mario.frame) {
+            hitEnemies.append(enemy)
+          }
+        }
+        for enemy in hitEnemies {
+          marioHit(enemy: enemy)
         }
       }
-      for enemy in hitEnemies {
-        marioHit(enemy: enemy)
+    
+    
+    func coinHit(enemy: SKSpriteNode) {
+        
+     //   run(coinCollisionSound)
+       enemy.removeFromParent()
+       coin += 1
+        print(coin)
+        
+        finalScore = coin
+          
       }
-    }
+    
+    
+    
+    
+    
+    
+    
     
     
     func sceneTouched(touchLocation:CGPoint) {
@@ -277,6 +362,13 @@ class GameScene: SKScene {
         
     }
     
+    
+    
+    
+    
+    
+    
+    
     override func touchesBegan(_ touches: Set<UITouch>,
          with event: UIEvent?) {
        guard let touch = touches.first else {
@@ -285,6 +377,12 @@ class GameScene: SKScene {
        let touchLocation = touch.location(in: self)
        sceneTouched(touchLocation: touchLocation)
      }
+    
+    
+    
+    
+
+    
     
     
     
@@ -306,12 +404,16 @@ class GameScene: SKScene {
     if lives <= 0 && !gameOver {
       gameOver = true
       print("You lose!")
+        print("Your Final Score is " + String(finalScore))
       backgroundMusicPlayer.stop()
+        
       
     }
     
     
   }
+   
+  
   
     
     
